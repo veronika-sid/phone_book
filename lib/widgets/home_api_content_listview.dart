@@ -26,6 +26,7 @@ class _ApiContentListViewState extends State<ApiContentListView> {
           } else {
             context.read<UsersCubit>().showUsers();
           }
+          context.read<UsersCubit>().updatePage();
         }
       },
       builder: (context, state) {
