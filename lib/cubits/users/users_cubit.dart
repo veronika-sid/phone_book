@@ -56,4 +56,8 @@ class UsersCubit extends Cubit<UsersState> {
     emit(state.copyWith(isUserAdded: false));
   }
 
+  Future<void> updatePage () async {
+    emit(state.copyWith(isUserDeleted: false));
+  }
+
 }
