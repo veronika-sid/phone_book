@@ -55,16 +55,17 @@ class AddUserScreen extends StatelessWidget {
                       BlocConsumer<UsersCubit, UsersState>(
                         listener: (context, state) {
                           if (state.isUserAdded) {
+                            context.read<UsersCubit>().showUsers();
+                            context.read<DataBaseCubit>().updateUserList(state.users!);
                             Navigator.pop(context);
                             context.read<UsersCubit>().closePage();
-                            context.read<DataBaseCubit>().updateUserList(state.users!);
                           }
                         },
                         builder: (context, state) {
                           return ElevatedButton(
-                              onPressed: () {
+                              onPressed: () async {
                                 try {
-                                  context
+                                  await context
                                       .read<UsersCubit>()
                                       .addUser(_controller.text);
                                 } catch (error) {

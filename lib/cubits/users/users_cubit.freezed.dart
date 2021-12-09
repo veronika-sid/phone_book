@@ -18,12 +18,17 @@ class _$UsersStateTearOff {
   const _$UsersStateTearOff();
 
   _UsersState call(
-      {List<User>? users, User? user, String? name, bool isUserAdded = false}) {
+      {List<User>? users,
+      User? user,
+      String? name,
+      bool isUserAdded = false,
+      bool? isUserDeleted}) {
     return _UsersState(
       users: users,
       user: user,
       name: name,
       isUserAdded: isUserAdded,
+      isUserDeleted: isUserDeleted,
     );
   }
 }
@@ -37,6 +42,7 @@ mixin _$UsersState {
   User? get user => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   bool get isUserAdded => throw _privateConstructorUsedError;
+  bool? get isUserDeleted => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $UsersStateCopyWith<UsersState> get copyWith =>
@@ -48,7 +54,12 @@ abstract class $UsersStateCopyWith<$Res> {
   factory $UsersStateCopyWith(
           UsersState value, $Res Function(UsersState) then) =
       _$UsersStateCopyWithImpl<$Res>;
-  $Res call({List<User>? users, User? user, String? name, bool isUserAdded});
+  $Res call(
+      {List<User>? users,
+      User? user,
+      String? name,
+      bool isUserAdded,
+      bool? isUserDeleted});
 }
 
 /// @nodoc
@@ -65,6 +76,7 @@ class _$UsersStateCopyWithImpl<$Res> implements $UsersStateCopyWith<$Res> {
     Object? user = freezed,
     Object? name = freezed,
     Object? isUserAdded = freezed,
+    Object? isUserDeleted = freezed,
   }) {
     return _then(_value.copyWith(
       users: users == freezed
@@ -83,6 +95,10 @@ class _$UsersStateCopyWithImpl<$Res> implements $UsersStateCopyWith<$Res> {
           ? _value.isUserAdded
           : isUserAdded // ignore: cast_nullable_to_non_nullable
               as bool,
+      isUserDeleted: isUserDeleted == freezed
+          ? _value.isUserDeleted
+          : isUserDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -93,7 +109,12 @@ abstract class _$UsersStateCopyWith<$Res> implements $UsersStateCopyWith<$Res> {
           _UsersState value, $Res Function(_UsersState) then) =
       __$UsersStateCopyWithImpl<$Res>;
   @override
-  $Res call({List<User>? users, User? user, String? name, bool isUserAdded});
+  $Res call(
+      {List<User>? users,
+      User? user,
+      String? name,
+      bool isUserAdded,
+      bool? isUserDeleted});
 }
 
 /// @nodoc
@@ -112,6 +133,7 @@ class __$UsersStateCopyWithImpl<$Res> extends _$UsersStateCopyWithImpl<$Res>
     Object? user = freezed,
     Object? name = freezed,
     Object? isUserAdded = freezed,
+    Object? isUserDeleted = freezed,
   }) {
     return _then(_UsersState(
       users: users == freezed
@@ -130,6 +152,10 @@ class __$UsersStateCopyWithImpl<$Res> extends _$UsersStateCopyWithImpl<$Res>
           ? _value.isUserAdded
           : isUserAdded // ignore: cast_nullable_to_non_nullable
               as bool,
+      isUserDeleted: isUserDeleted == freezed
+          ? _value.isUserDeleted
+          : isUserDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -137,7 +163,12 @@ class __$UsersStateCopyWithImpl<$Res> extends _$UsersStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_UsersState implements _UsersState {
-  _$_UsersState({this.users, this.user, this.name, this.isUserAdded = false});
+  _$_UsersState(
+      {this.users,
+      this.user,
+      this.name,
+      this.isUserAdded = false,
+      this.isUserDeleted});
 
   @override
   final List<User>? users;
@@ -148,10 +179,12 @@ class _$_UsersState implements _UsersState {
   @JsonKey(defaultValue: false)
   @override
   final bool isUserAdded;
+  @override
+  final bool? isUserDeleted;
 
   @override
   String toString() {
-    return 'UsersState(users: $users, user: $user, name: $name, isUserAdded: $isUserAdded)';
+    return 'UsersState(users: $users, user: $user, name: $name, isUserAdded: $isUserAdded, isUserDeleted: $isUserDeleted)';
   }
 
   @override
@@ -163,7 +196,9 @@ class _$_UsersState implements _UsersState {
             const DeepCollectionEquality().equals(other.user, user) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality()
-                .equals(other.isUserAdded, isUserAdded));
+                .equals(other.isUserAdded, isUserAdded) &&
+            const DeepCollectionEquality()
+                .equals(other.isUserDeleted, isUserDeleted));
   }
 
   @override
@@ -172,7 +207,8 @@ class _$_UsersState implements _UsersState {
       const DeepCollectionEquality().hash(users),
       const DeepCollectionEquality().hash(user),
       const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(isUserAdded));
+      const DeepCollectionEquality().hash(isUserAdded),
+      const DeepCollectionEquality().hash(isUserDeleted));
 
   @JsonKey(ignore: true)
   @override
@@ -185,7 +221,8 @@ abstract class _UsersState implements UsersState {
       {List<User>? users,
       User? user,
       String? name,
-      bool isUserAdded}) = _$_UsersState;
+      bool isUserAdded,
+      bool? isUserDeleted}) = _$_UsersState;
 
   @override
   List<User>? get users;
@@ -195,6 +232,8 @@ abstract class _UsersState implements UsersState {
   String? get name;
   @override
   bool get isUserAdded;
+  @override
+  bool? get isUserDeleted;
   @override
   @JsonKey(ignore: true)
   _$UsersStateCopyWith<_UsersState> get copyWith =>

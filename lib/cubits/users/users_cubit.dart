@@ -15,8 +15,10 @@ class UsersCubit extends Cubit<UsersState> {
   final IUserRepository userRepository;
 
   Future<void> deleteUser(int index) async {
+    emit(state.copyWith(isUserDeleted: false));
     try {
       await userRepository.deleteUser(index);
+      emit(state.copyWith(isUserDeleted: true));
     } catch (statusCode) {
       rethrow;
     }
@@ -27,7 +29,7 @@ class UsersCubit extends Cubit<UsersState> {
       emit(state.copyWith(isUserAdded: false));
     } else {
       try {
-        userRepository.addUser(name);
+        await userRepository.addUser(name);
         emit(state.copyWith(isUserAdded: true));
       } catch (statusCode) {
         rethrow;
@@ -53,4 +55,5 @@ class UsersCubit extends Cubit<UsersState> {
   Future<void> closePage () async {
     emit(state.copyWith(isUserAdded: false));
   }
+
 }

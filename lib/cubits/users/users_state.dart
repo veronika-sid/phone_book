@@ -7,5 +7,6 @@ class UsersState with _$UsersState {
     User? user,
     String? name,
     @Default(false) bool isUserAdded,
+    bool? isUserDeleted,
   }) = _UsersState;
 }
