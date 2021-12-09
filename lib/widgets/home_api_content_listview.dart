@@ -19,6 +19,14 @@ class _ApiContentListViewState extends State<ApiContentListView> {
         if(state.users !=null) {
           context.read<DataBaseCubit>().saveUserList(state.users!);
         }
+        if(state.isUserDeleted != null) {
+          if(state.isUserDeleted!) {
+            context.read<UsersCubit>().showUsers();
+            context.read<DataBaseCubit>().updateUserList(state.users!);
+          } else {
+            context.read<UsersCubit>().showUsers();
+          }
+        }
       },
       builder: (context, state) {
         try {
@@ -35,19 +43,15 @@ class _ApiContentListViewState extends State<ApiContentListView> {
                 itemBuilder: (BuildContext context, int index) {
                   return Dismissible(
                     key: UniqueKey(),
-                    onDismissed: (_) {
+                    onDismissed: (_) async {
                       try {
-                        context
+                        await context
                             .read<UsersCubit>()
                             .deleteUser(state.users![index].id);
-                        state.users!.removeWhere(
-                                (user) => user.id == state.users![index].id);
                       } catch (statusCode) {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             content: Text(
                                 'Что-то пошло не так :( Status code: $statusCode')));
-                        context.read<UsersCubit>().showUsers();
-                        context.read<DataBaseCubit>().updateUserList(state.users!);
                       }
                       setState(() {});
                     },
